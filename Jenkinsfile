@@ -1,5 +1,6 @@
 pipeline {
-agent any 
+//agent any
+	node ('master'){
 
 	stages{
 	   stage('comiling the code '){
@@ -12,4 +13,5 @@ agent any
 	           }
 	}
      }
+	}
 }
