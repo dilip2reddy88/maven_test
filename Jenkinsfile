@@ -1,6 +1,5 @@
 pipeline{
 agent any
-node {
    def mvnHome
    stages{
    stage('Preparation') { // for display purposes
@@ -24,5 +23,4 @@ node {
       archive 'target/*.jar'
    }
    }
-}
 }
