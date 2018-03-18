@@ -2,16 +2,9 @@ pipeline{
 agent any
    def mvnHome
    stages{
-   stage('Preparation') { // for display purposes
-      // Get some code from a GitHub repository
-      git 'https://github.com/jglick/simple-maven-project-with-tests.git'
-      // Get the Maven tool.
-      // ** NOTE: This 'M3' Maven tool must be configured
-      // **       in the global configuration.           
-      mvnHome = tool 'maven_install'
-   }
    stage('Build') {
       // Run the maven build
+	  mvnHome = tool 'maven_install'
       if (isUnix()) {
          sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       } else {
