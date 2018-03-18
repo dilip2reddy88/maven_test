@@ -12,4 +12,3 @@ agent any
       archive 'target/*.jar'
    }
    }
-}
