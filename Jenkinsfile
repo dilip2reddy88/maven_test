@@ -1,17 +1,26 @@
 pipeline {
-//agent any
-	node ('master'){
-
-	stages{
-	   stage('comiling the code '){
-		   steps{
-		     withMaven(maven :'maven_install')
-				{
-					sh 'mvn clean compile'
-				}
-			 
-	           }
-	}
-     }
-	}
-}
+    agent any
+     stages {
+        stage ('Compile Stage') {
+             steps {
+                withMaven(maven : 'maven_install') {
+                    sh 'mvn clean compile'
+                }
+            }
+        }
+         stage ('Testing Stage') {
+             steps {
+                withMaven(maven : 'maven_install') {
+                    sh 'mvn test'
+                }
+            }
+        }
+ 
+        stage ('Deployment Stage') {
+            steps {
+                withMaven(maven : 'maven_install') {
+                    sh 'mvn deploy'
+                }
+            }
+        }
+    }
