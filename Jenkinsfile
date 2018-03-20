@@ -3,8 +3,8 @@ pipeline {
   stages {
     stage('compile') {
       steps {
-       //def mvnHome = tool 'maven_install'
-        bat(/"maven_install\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+		//def mvnHome = tool 'maven_install'
+        bat(/"C:\apache-maven-3.5.2\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       }
     }
     stage('archive and Results') {
