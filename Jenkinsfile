@@ -1,11 +1,17 @@
-pipeline{
-agent any
-   stages{
-   stage('Build') {
-      echo " amin build "
+pipeline {
+  agent any
+  stages {
+    stage('compile') {
+      steps {
+		  def mvnHome = tool 'maven_install'
+        bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       }
-   stage('Results') {
-      echo " am from reu"
-   }
-   }
+    }
+    stage('archive and Results') {
+      steps {
+        junit '**/target/surefire-reports/TEST-*.xml'
+        archive 'target/*.jar'
+      }
+    }
+  }
 }
